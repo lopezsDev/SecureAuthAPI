@@ -1,46 +1,31 @@
 package com.api.secureauthapi.controller;
 
-import com.api.secureauthapi.dto.JwtResponse;
-import com.api.secureauthapi.dto.LoginRequest;
-import com.api.secureauthapi.model.User;
-import com.api.secureauthapi.repository.UserRepository;
-import com.api.secureauthapi.security.JwtUtil;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+import com.api.secureauthapi.dto.AuthRequest;
+import com.api.secureauthapi.dto.AuthResponse;
+import com.api.secureauthapi.dto.RegisterRequest;
+import com.api.secureauthapi.service.AuthService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
+@RequiredArgsConstructor
 public class AuthController {
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
-    private final JwtUtil jwtUtil;
 
-    public AuthController(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtUtil jwtUtil) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-        this.jwtUtil = jwtUtil;
-    }
+    private final AuthService authService;
 
     @PostMapping("/register")
-    public String register(@RequestBody LoginRequest request) {
-        User user = new User();
-        user.setEmail(request.email());
-        user.setPassword(passwordEncoder.encode(request.password()));
-        userRepository.save(user);
-        return "Usuario registrado exitosamente";
+    public ResponseEntity<AuthResponse> register(@Valid @RequestBody RegisterRequest request) {
+        return ResponseEntity.ok(authService.register(request));
     }
 
     @PostMapping("/login")
-    public JwtResponse login(@RequestBody LoginRequest request) {
-        User user = userRepository.findByEmail(request.email())
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-
-        if (!passwordEncoder.matches(request.password(), user.getPassword())) {
-            throw new RuntimeException("Contraseña incorrecta");
-        }
-
-        String token = jwtUtil.generateToken(user.getEmail());
-        return new JwtResponse(token);
+    public ResponseEntity<AuthResponse> authenticate(@Valid @RequestBody AuthRequest request) {
+        return ResponseEntity.ok(authService.authenticate(request));
     }
 }
-
