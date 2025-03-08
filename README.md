@@ -24,23 +24,26 @@ Here's an overview of the authentication flow with JWT in this project:
 ## 🚀 Getting Started
 
 1️⃣ **Clone the repository**:
+
 ```bash
 git clone https://github.com/lopezsDev/SecureAuthAPI.git
 cd SecureAuthAPI
-
+```
 2️⃣ Set up environment variables:
 
 Make sure to define the following environment variables before running the project:
 
+```bash
 export SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/your_db
 export SPRING_DATASOURCE_USERNAME=your_user
 export SPRING_DATASOURCE_PASSWORD=your_password
 export JWT_SECRET=your_secret
+```
 
 3️⃣ Run the project:
 
+```bash
 ./mvnw spring-boot:run
+```
 
-📩 Contact Me
-
-[![Email](https://img.shields.io/badge/Email-Contact%20Me-red?style=flat&logo=gmail)](mailto:lopezs.dev@gmail.com)  
+📩 [Contact Me](mailto:lopezs.dev@gmail.com)
