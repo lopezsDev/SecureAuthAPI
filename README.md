@@ -43,4 +43,4 @@ export JWT_SECRET=your_secret
 
 📩 Contact Me
 
-[![Email](https://img.shields.io/badge/Email-Contact%20Me-red?style=flat&logo=gmail)](mailto:lopezs.dev@gmail.com)
+[![Email](https://img.shields.io/badge/Email-Contact%20Me-red?style=flat&logo=gmail)](mailto:lopezs.dev@gmail.com)  
