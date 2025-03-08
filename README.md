@@ -42,3 +42,5 @@ export JWT_SECRET=your_secret
 ./mvnw spring-boot:run
 
 📩 Contact Me
+
+[![Email](https://img.shields.io/badge/Email-Contact%20Me-red?style=flat&logo=gmail)](mailto:lopezs.dev@gmail.com)
