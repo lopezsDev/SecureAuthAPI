@@ -31,13 +31,14 @@ cd SecureAuthAPI
 ```
 2️⃣ Set up environment variables:
 
-Make sure to define the following environment variables before running the project:
-
+Be sure to define the environment variables before running the project:
 ```bash
-export SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/your_db
-export SPRING_DATASOURCE_USERNAME=your_user
-export SPRING_DATASOURCE_PASSWORD=your_password
-export JWT_SECRET=your_secret
+spring.datasource.url=jdbc:postgresql://localhost:${DB_PORT}/${DB_NAME}
+spring.datasource.username=${DB_USER}
+spring.datasource.password=${DB_PASS}
+
+jwt.secret=${JWT_SECRET}
+jwt.expiration=${JWT_EXPIRATION}
 ```
 
 3️⃣ Run the project:
